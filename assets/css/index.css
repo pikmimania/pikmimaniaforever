@@ -1,0 +1,212 @@
+/* Settings */
+:root {
+    --baseline: 28px;
+    --color-nuotron: #f35635;
+    --color-background: #292e43;
+    --color-text-normal: #fff;
+    --color-text-low: rgba(255, 255, 255, 0.63);
+    --color-selection: rgba(0, 0, 0, 0.21);
+  
+    --font-family: 'Muli', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-bold: 800;
+    --font-size-headline: 48px;
+    --font-size-body: 18px;
+  
+    --transition-easing: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+    --transition-duration: 1.2s;
+  
+    --nuotron-size: calc(var(--baseline) * 3);
+    --nuotron-stroke: 18px;
+    --nuotron-dot: 24px;
+    --nuotron-duration: var(--transition-duration);
+    --nuotron-twist: 4;
+    --nuotron-rotation: 45deg;
+  }
+  
+  /* Base */
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    position: relative;
+    direction: ltr;
+    text-align: center;
+    font-family: var(--font-family);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--baseline);
+    background-color: var(--color-background);
+    color: var(--color-text-normal);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  ::selection {
+    background-color: var(--color-selection);
+    color: var(--color-text-normal);
+  }
+  
+  ::-moz-selection {
+    background-color: var(--color-selection);
+    color: var(--color-text-normal);
+  }
+  
+  /* Nuotron */
+  #nuotron {
+    top: 50%;
+    left: 50%;
+    width: var(--nuotron-size);
+    height: var(--nuotron-size);
+    margin-top: calc(-1 * var(--nuotron-size) / 2);
+    margin-left: calc(-1 * var(--nuotron-size) / 2);
+    transform: rotate(var(--nuotron-rotation));
+    position: absolute;
+  }
+  
+  #nuotron,
+  #nuotron *,
+  #nuotron *:before {
+    display: block;
+    position: absolute;
+  }
+  
+  #nuotron .ellipse,
+  #nuotron .dot {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  /* Ellipse */
+  #nuotron .ellipse {
+    border: var(--nuotron-stroke) solid var(--color-nuotron);
+    border-radius: 50%;
+  }
+  
+  /* Dot */
+  #nuotron .dot {
+    animation: dotRotate calc(var(--nuotron-duration) * var(--nuotron-twist)) linear infinite;
+  }
+  
+  @keyframes dotRotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  #nuotron .dot:before {
+    content: '';
+    top: calc(-1 * (var(--nuotron-dot) + var(--nuotron-stroke)));
+    left: 50%;
+    width: var(--nuotron-dot);
+    height: var(--nuotron-dot);
+    margin-left: calc(-1 * var(--nuotron-dot) / 2);
+    border-radius: 50%;
+    background-color: var(--color-nuotron);
+    animation: dotEffect var(--nuotron-duration) ease-in-out infinite;
+  }
+  
+  @keyframes dotEffect {
+    50% {
+      top: calc(var(--nuotron-size) + var(--nuotron-stroke));
+    }
+    0%,
+    50%,
+    100% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.5);
+    }
+    75% {
+      transform: scale(1.5);
+    }
+  }
+  
+  /* Text */
+  #text {
+    --nuotron-safeArea: calc(var(--nuotron-size) + var(--nuotron-stroke) * 2 + var(--nuotron-dot) * 2 + var(--baseline) * 0.5);
+    
+    top: 50%;
+    left: 50%;
+    width: var(--nuotron-safeArea);
+    height: var(--nuotron-safeArea);
+    margin-top: calc(-1 * var(--nuotron-safeArea) / 2);
+    margin-left: calc(-1 * var(--nuotron-safeArea) / 2);
+    position: absolute;
+  }
+  
+  #text,
+  #text > * {
+    display: block;
+    position: absolute;
+    white-space: nowrap;
+    transition: all var(--transition-duration) var(--transition-easing);
+  }
+  
+  /* Hover and website */
+  #text .hover,
+  #text .website {
+    top: 100%;
+    left: 50%;
+    letter-spacing: 2px;
+    transform: translateX(-50%);
+    color: var(--color-text-low);
+  }
+  
+  #text .website {
+    margin-top: var(--baseline);
+    opacity: 0;
+  }
+  
+  /* Nuotron and Agency */
+  #text .nuotron,
+  #text .agency {
+    font-size: var(--font-size-headline);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--nuotron-safeArea);
+    letter-spacing: 30px;
+    color: var(--color-text-normal);
+    opacity: 0;
+  }
+  
+  #text .nuotron {
+    right: 100%;
+    margin-right: -34px;
+  }
+  
+  #text .agency {
+    left: 100%;
+  }
+  
+  /* Text Hover */
+  #text:hover .nuotron,
+  #text:hover .agency {
+    letter-spacing: 14px;
+    opacity: 1;
+  }
+  
+  #text:hover .nuotron {
+    margin-right: -18px;
+  }
+  
+  #text:hover .hover {
+    margin-top: var(--baseline);
+    opacity: 0;
+  }
+  
+  #text:hover .website {
+    margin-top: 0;
+    opacity: 1;
+  }
+  

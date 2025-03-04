@@ -1,19 +1,60 @@
-body {
+/* Variables de Colores y Configuración Base */
+:root {
+    --background-color: #111;
+    --text-color: #fff;
+    --nav-background: #222;
+    --event-overlay: rgba(0, 0, 0, 0.96);
+    --highlight-color: #ffcc00;
+    --button-bg: #ff6600;
+    --tcr-dark-color: #000; /* Color para elementos oscuros */
+  }
+  
+  /* Reset básico */
+  * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos Globales */
+  body {
     font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     text-align: center;
-    background-color: #111;
-    color: white;
-}
+  }
 
-.video-container {
+  a {
+    transition: all 0.25s ease-in-out;
+    box-shadow: none;
+    text-decoration: none!important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--tcr-dark-color);
+    font-family: var(--tcr-ch-title-ff);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* Página de Eventos */
+  body.events-page {
+    font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  
+  /* Video Container (si se utiliza) */
+  .video-container {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-}
-
-.video-container video {
+  }
+  
+  .video-container video,
+  video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,29 +62,187 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.planning {
+  }
+  
+  /* Sección Introductoria (si se utiliza) */
+  .intro {
     padding: 50px 20px;
-    background-color: #222;
-}
-
-.day {
-    margin-bottom: 40px;
-    padding: 20px;
+    background: var(--nav-background);
+  }
+  
+  /* Secciones de Eventos y Horario */
+  .events, .schedule {
+    padding: 50px 20px;
+  }
+  
+  /* Bloque Individual de Evento */
+  .event, .day {
     background: #333;
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 10px;
-}
+    width: 80%;
+  }
+  
+  /* Botón Personalizado */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--button-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Espaciado Superior en el Contenido Principal */
+  .site-main {
+    padding-top: 120px;
+  }
+  
+  /* Estilos para la Sección de Eventos */
+  .tcr-elementor-container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1140px;
+  }
+  
+  .tcr-elementor-widget-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+  
+  .tcr-events-wrapper {
+    width: 100%;
+  }
+  
+  .tcr-event-wrapper {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  
+  /* Overlay con Gradiente */
+  .tcr-event-wrapper::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 35%, var(--event-overlay) 90%);
+  }
+  
+  /* Fecha del Evento */
+  .tcr-event-date {
+    color: var(--tcr-dark-color);
+    background-color: var(--highlight-color);
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    padding: 7px 10px;
+    font-weight: 700;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    letter-spacing: 1px;
+  }
+  
+  /* Contenido del Evento */
+  .tcr-event-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 170px 30px 25px;
+    width: 100%;
+    z-index: 9;
+  }
+  
+  /* Título del Evento */
+  .tcr-event-title {
+    margin-bottom: 6px;
+  }
+  
+  .tcr-event-title a {
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 500;
+    text-decoration: none;
+  }
 
+  .tcr-event-title a:hover {
+    color: var(--highlight-color);
+  }
+  
+  /* Información de Hora y Lugar */
+  .tcr-event-time-venue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .tcr-event-time,
+  .tcr-event-venue {
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.875rem;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  /* Asegura que la imagen de fondo cubra el contenedor */
+  .tcr-event-wrapper {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .tcr-event-video {
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Al hacer hover sobre el contenedor, se muestra el video */
+  .tcr-event-wrapper:hover .tcr-event-video {
+    opacity: 1;
+  }
+  
+  /* Iconos (asegúrate de cargar las fuentes de iconos correspondientes) */
+  .tcr-event-time::before {
+    content: "\f017";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    top: 3px;
+    left: 0;
+    font-size: 0.875rem;
+    color: var(--highlight-color);
+  }
+  
+  .tcr-event-venue::before {
+    content: "\f115";
+    font-family: 'flaticon_mycollection', sans-serif;
+    position: absolute;
+    top: 4px;
+    left: 1px;
+    font-size: 0.8125rem;
+    color: var(--highlight-color);
+  }
+  
+  /* Media Query para Pantallas Grandes */
+  @media (min-width: 1200px) {
+    .tcr-elementor-container {
+      max-width: 1290px;
+    }
+  }
+  

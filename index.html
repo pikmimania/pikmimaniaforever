@@ -4,41 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pikmimania Forever</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-    <div class="video-container">
-        <video id="bg-video" autoplay loop muted playsinline>
-            <source src="assets/media/video.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-        </video>
-        <audio id="bg-music" loop autoplay>
-            <source src="assets/media/PikmimaniaForever.mp3?v=<?= time(); ?>" type="audio/mp3">
-        </audio>
-        <div class="controls">
-            <button id="mute-btn" onclick="toggleMusic()">🔊</button>
-        </div>
+    <div id="nuotron">
+        <div class="ellipse"></div>
+        <div class="dot"></div>
     </div>
-    
-    <div class="planning">
-        <h1>Planning del Fin de Semana</h1>
-        
-        <div class="day">
-            <h2>Viernes</h2>
-            <p>Encuentro en el hotel, cena y primeras partidas de FIFA.</p>
+
+    <a id="text" href="pages/eventos.html" target="_blank">
+        <div class="hover">
+            <div>Próximamente</div>
+            <div></div>
         </div>
-        
-        <div class="day">
-            <h2>Sábado</h2>
-            <p>Road to WrestleMania Live Show en Badalona. Cena y más FIFA.</p>
-        </div>
-        
-        <div class="day">
-            <h2>Domingo</h2>
-            <p>Despedida y planes futuros para la próxima Pikmimaniad.</p>
-        </div>
-    </div>
-    
-    <script src="assets/js/scripts.js"></script>
+        <div class="website">Haz clic para acceder a los eventos</div>
+        <div class="nuotron">Pikmimania</div>
+        <div class="agency">Forever</div>
+    </a>
 </body>
 </html>

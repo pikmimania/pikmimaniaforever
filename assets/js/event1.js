@@ -20,6 +20,29 @@ document.addEventListener("DOMContentLoaded", function () {
             music.play();
         }
     }, { once: true }); // Solo se ejecuta la primera vez que haga clic
+
+    // Selecciona todos los tabs y los contenedores de contenido
+    const tabs = document.querySelectorAll('.list-tab');
+    const contents = document.querySelectorAll('.tab-content-list');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Remueve la clase activa de todos los tabs
+          tabs.forEach(item => item.classList.remove('active-tab-link'));
+          // Remueve la clase activa de todos los contenidos
+          contents.forEach(content => content.classList.remove('active-tab'));
+          
+          // Agrega la clase activa al tab clicado
+          tab.classList.add('active-tab-link');
+          
+          // Obtiene el ID del contenido a mostrar desde el atributo data-target
+          const targetId = tab.getAttribute('data-target');
+          // Agrega la clase activa al contenido correspondiente
+          document.getElementById(targetId).classList.add('active-tab');
+        });
+      });
 });
 
 function toggleMusic() {
